@@ -1,0 +1,10 @@
+{
+	"name": "random_names",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "shankarr+1001@zohocorp.com",
+	"dependencies": {
+		"request": "^2.88.0",
+		"zcatalyst-sdk-node": "0.0.13"
+	}
+}

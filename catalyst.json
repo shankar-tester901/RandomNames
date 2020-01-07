@@ -1,0 +1,9 @@
+{
+  "functions": {
+    "targets": [
+      "random_names"
+    ],
+    "ignore": [],
+    "source": "functions"
+  }
+}

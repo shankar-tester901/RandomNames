@@ -1,0 +1,10 @@
+{
+	"deployment": {
+		"name": "random_names",
+		"stack": "node10",
+		"type": "basicio"
+	},
+	"execution": {
+		"main": "index.js"
+	}
+}

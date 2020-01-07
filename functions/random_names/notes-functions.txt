@@ -1,0 +1,8 @@
+In functions, the entire logic is written inside the module.exports. So there is limited coding-freedom 
+so to speak.
+
+In this case, I have invoked another utility function inside the module.exports.
+
+Here, we invoke a third party url and process the response with basicIO.write. There is no data to be 
+sent back. 
+
