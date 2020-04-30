@@ -135,100 +135,45 @@ Whatever you need to do, you have to refer these two parameters only. They are o
 
 
 
+const request = require("request");
+const axios = require("axios");
+const catalyst = require("zcatalyst-sdk-node");
+/**
+ * This function generates a random German name and sends an email to the specified person
+ *
+ */
 module.exports = (context, basicIO) => {
+	const app = catalyst.initialize(context);
 
-        const app = catalyst.initialize(context);
+	async function getRandomNames() {
+		let url = "http://names.drycodes.com/1";
+		const response = await axios.get(url);
+		const answer = await response.data[0];
+		//console.log(answer);
+		basicIO.write(answer);
+		dispatchEmail(answer);
+		context.close();
+	}
 
+	function dispatchEmail(name) {
+		console.log('in dispatch email ');
+		//Create a config object with the email configuration
+		let config = {
+			from_email: 'shankarr+1002@zohocorp.com',
+			to_email: 'shankarr+1002@zohocorp.com',
+			subject: 'Random Name Generated',
+			content: name
+		};
 
-
-        let url = "https://uinames.com/api/?region=germany";
-
-
-
-
-
-        try {
-
-                request(url, function (err, response, body) {
-
-                        if (err) {
-
-                                basicIO.write("Error occured in fetching a random name" + err);
-
-                                context.close();
-
-                        } else {
-
-                                let rand_Name = JSON.parse(body);
-
-                                if (rand_Name == undefined) {
-
-                                        basicIO.write("Error occured in getting a random name");
-
-                                        context.close();
-
-                                } else {
-
-                                        basicIO.write(rand_Name.name + " " + rand_Name.surname + "... " + rand_Name.gender);
-
-                                        dispatchEmail(rand_Name.name, rand_Name.surname);
-
-                                        context.close();
-
-                                }
-
-                        }
-
-                });
-
-        } catch (err) {
-
-                basicIOObj.write("Error in fetching name : " + err);
-
-                context.close();
-
-        }
-
-
-
-        function dispatchEmail(firstname, lastname) {
-
-                console.log('in dispatch email ');
-
-                //Create a config object with the email configuration
-
-                let config = {
-
-                        from_email: 'shankarr+1002@zohocorp.com',
-
-                        to_email: 'shankarr+1002@zohocorp.com',
-
-                        subject: 'German Random Name Generated',
-
-                        content: firstname + "-- " + lastname
-
-                };
-
-
-
-                //Send the mail by passing the config object to the method which in turn returns a promise
-
-                let email = app.email();
-
-                let mailPromise = email.sendMail(config);
-
-                mailPromise.then((mailObject) => {
-
-                        console.log(mailObject);
-
-                });
-
-        }
-
-};
-
-
-
+		//Send the mail by passing the config object to the method which in turn returns a promise
+		let email = app.email();
+		let mailPromise = email.sendMail(config);
+		mailPromise.then((mailObject) => {
+			console.log('Mailing ' + mailObject);
+		});
+	}
+	getRandomNames();
+}
 
 
 
