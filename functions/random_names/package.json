@@ -4,7 +4,16 @@
 	"main": "index.js",
 	"author": "shankarr+1001@zohocorp.com",
 	"dependencies": {
+		"axios": "^0.19.2",
 		"request": "^2.88.0",
 		"zcatalyst-sdk-node": "0.0.13"
-	}
+	},
+	"devDependencies": {
+		"jest": "^25.5.2"
+	},
+    {
+  "scripts": {
+    "test": "jest"
+  }
+}
 }
