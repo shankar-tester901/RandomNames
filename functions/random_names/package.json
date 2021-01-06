@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"author": "shankarr+1001@zohocorp.com",
 	"dependencies": {
-		"axios": "^0.19.2",
+		"axios": "^0.21.1",
 		"request": "^2.88.0",
 		"zcatalyst-sdk-node": "0.0.13"
 	},
